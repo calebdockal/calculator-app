@@ -39,6 +39,11 @@ function Home() {
 
       display && updateState();
     };
+
+    // although eval should not frequently be used in a production setting, in a personal development calculator it should be fine
+    // it takes any expression and well, evaluates it
+    // this function will take the entered input, check the operators used, and evaluate the expression
+    // once it is evaluated, it determines if it is still an integer and converts it to a string int that is rounded to the 100th in case of a
     const calculate = (lastInput) => {
       if (!symbols.includes(lastInput) && output) {
         try {
@@ -56,7 +61,10 @@ function Home() {
         }
       }
     };
-
+    // In the event that the button object with the id of "clear is pressed, call the resetOutput function with the value set to true"
+    // In the event that the CE button object is pressed, take the output string and remove a single value from the end, as negative arguments remove
+    // Elements from the end of the string, and sets the display value to the newly sliced output string
+    // When the equals button is pressed, call the calculate function
     switch (id) {
       case "clear":
         resetOutput(true);
@@ -72,6 +80,9 @@ function Home() {
         return;
     }
   };
+  // This function is called each time an operator key is pressed and checks to see if the output is empty while also making sure the item isnt a subtraction symbol.
+  // If the last button pressed was a symbol, slice the current string output to remove the symbol and use this instead.
+  // Otherwise just simply add the operator that was selected to the expression
   const operatorKey = (value, lastInput) => {
     if (output === "" && value !== "-") {
       return;
@@ -82,6 +93,9 @@ function Home() {
     }
     updateState();
   };
+
+  // This function will ensure that if the decimal is used, the function will be able to recognize that it was at the end and will add the selected value after the decimal
+  // Remember this is called each time a number is clicked, to add the value to the initial number before creating a full expression. It will always update state.
   const numberKey = (value, lastInput) => {
     if (value === "." || value === "%") {
       if (output === "" && value === "%") return;
@@ -106,6 +120,8 @@ function Home() {
 }
 
 export default Home;
+
+// Firstly create an array of objects to act as the "keyboard" or buttons to click to perform mathmatical operations on the selected numbers
 
 function Keyboard({ onClick }) {
   const numArr = [

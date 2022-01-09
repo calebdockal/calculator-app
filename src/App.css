@@ -1,38 +1,97 @@
 .App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+
+  height: 100vh;
+  background: #262626;
+}
+
+.button {
+  margin: 1px;
+  padding: 0;
+  width: 60px;
+  height: 60px;
   text-align: center;
+  line-height: 63px;
+  background: #333;
+  border-radius: 10%;
+  color: #666;
+  transition: 0.5s;
+  border: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.button:hover {
+  color: #0af593;
+  box-shadow: 0 0 5px #00d6fc;
+  text-shadow: 0 0 5px #00d6fc;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.calc-body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.calc-body div.button {
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  padding: 10px;
+}
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  position: relative;
+}
+
+.numbers {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.results {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border: 2px solid black;
+  margin: 10px;
+  background-color: #333;
 }
 
-@keyframes App-logo-spin {
+.title {
+  overflow: hidden;
+  border-right: 0.15em solid rgb(0, 255, 128);
+  font-size: 1.6rem;
+  white-space: nowrap;
+  width: 0;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  animation: typing 2s steps(30, end) forwards, blinking 1.3s infinite;
+  color: #4e868a;
+  box-shadow: 0 0 5px #0a83f5, 0 0 5px #0af5f5, 0 0 5px #0ac6f5;
+}
+.container {
+  display: inline-block;
+}
+@keyframes typing {
   from {
-    transform: rotate(0deg);
+    width: 0;
   }
   to {
-    transform: rotate(360deg);
+    width: 100%;
+  }
+}
+@keyframes blinking {
+  from {
+    border-color: transparent;
+  }
+  to {
+    border-color: rgb(3, 110, 75);
   }
 }
